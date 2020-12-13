@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- http://maven.apache.org/pom.html#Inheritance -->
+<!-- https://howtodoinjava.com/maven/maven-parent-child-pom-example -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -14,6 +16,9 @@
     <name>Codemerger BOM</name>
     <description>Demo project for JPA</description>
 
+    <packaging>pom
+    </packaging><!-- https://stackoverflow.com/questions/18733729/packaging-jar-is-invalid-aggregator-project-need-pom-as-packaging -->
+
     <modules>
         <module>simple-sequence</module>
         <module>transactional</module>
@@ -28,7 +33,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -54,5 +64,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

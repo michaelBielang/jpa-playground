@@ -2,10 +2,9 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>codemerger.simpel</groupId>
+    <groupId>codemerger.simple</groupId>
     <artifactId>sequence</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sequence</name>
     <description>This module works with a sequence table which is not managed by hibernate</description>
-
 </project>

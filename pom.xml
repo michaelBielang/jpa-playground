@@ -11,8 +11,13 @@
     <groupId>codemerger</groupId>
     <artifactId>jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
+    <name>Codemerger BOM</name>
     <description>Demo project for JPA</description>
+
+    <modules>
+        <module>simple-sequence</module>
+        <module>transactional</module>
+    </modules>
 
     <properties>
         <java.version>11</java.version>
@@ -49,10 +54,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <modules>
-        <module>simple-sequence</module>
-        <module>transactional</module>
-    </modules>
 
 </project>

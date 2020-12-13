@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>codemerger</groupId>
-    <artifactId>jpa</artifactId>
+    <artifactId>transactional</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>Demo project for JPA</description>
+    <name>transactional</name>
+    <description>Demo module for transactional functionality</description>
 
     <properties>
         <java.version>11</java.version>
@@ -49,10 +49,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <modules>
-        <module>simple-sequence</module>
-        <module>transactional</module>
-    </modules>
 
 </project>

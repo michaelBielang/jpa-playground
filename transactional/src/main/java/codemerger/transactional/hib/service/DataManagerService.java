@@ -39,7 +39,10 @@ public class DataManagerService {
     @Transactional
     public void createPersonWithException() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
-        databaseNoTransactionalService.save(getNewPerson());
+
+        final Person person = getNewPerson();
+
+        databaseNoTransactionalService.save(person);
         throw new NoSuchElementException("Random Exception");
     }
 
@@ -47,9 +50,9 @@ public class DataManagerService {
     public void createPersonWithExceptionRequiresNew() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
-        final Person sequentialPerson = getNewPerson();
+        final Person person = getNewPerson();
 
-        transactionalDatabaseService.saveRequiresNew(sequentialPerson);
+        transactionalDatabaseService.saveRequiresNew(person);
 
         throw new NoSuchElementException("Random Exception");
     }
@@ -57,9 +60,9 @@ public class DataManagerService {
     public void createPersonExceptionAfterTransactional() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
-        final Person sequentialPerson = getNewPerson();
+        final Person person = getNewPerson();
 
-        transactionalDatabaseService.save(sequentialPerson);
+        transactionalDatabaseService.save(person);
 
         throw new NoSuchElementException("Random Exception");
     }

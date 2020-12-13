@@ -23,23 +23,23 @@ import java.util.List;
 public class TransactionalDatabaseService {
 
     @Autowired
-    private PersonRepository seqPersonRepository;
+    private PersonRepository personRepository;
 
     @Transactional
-    public void save(Person sequentialPerson) {
-        seqPersonRepository.save(sequentialPerson);
+    public void save(Person person) {
+        personRepository.save(person);
     }
 
     public List<Person> getPersons() {
-        return seqPersonRepository.findAll();
+        return personRepository.findAll();
     }
 
     public void deleteAllPersons() {
-        seqPersonRepository.deleteAll();
+        personRepository.deleteAll();
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void saveRequiresNew(Person sequentialPerson) {
-        seqPersonRepository.save(sequentialPerson);
+    public void saveRequiresNew(Person person) {
+        personRepository.save(person);
     }
 }

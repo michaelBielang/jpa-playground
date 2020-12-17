@@ -1,6 +1,6 @@
 package codemerger.simpel.sequence.service;
 
-import codemerger.simpel.sequence.entities.SequentialPerson;
+import codemerger.simpel.sequence.entities.Person;
 import codemerger.simpel.sequence.repository.SequentialPersonRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,11 @@ public class PersonHandlerService {
     @Autowired
     private EntityManager entityManager;
 
-    public SequentialPerson createRandomPerson() {
+    public Person createRandomPerson() {
         final String firstName = getRandomName();
         final String lastName = getRandomName();
 
-        return new SequentialPerson(firstName, lastName);
+        return new Person(firstName, lastName);
     }
 
     private String getRandomName() {
@@ -45,10 +45,10 @@ public class PersonHandlerService {
         return ((BigInteger) query.getSingleResult()).longValue();
     }
 
-    public SequentialPerson savePerson(SequentialPerson sequentialPerson) {
+    public Person savePerson(Person person) {
         final long id = getIdFromSequence();
-        sequentialPerson.setId(id);
+        person.setId(id);
 
-        return sequentialPersonRepository.save(sequentialPerson);
+        return sequentialPersonRepository.save(person);
     }
 }

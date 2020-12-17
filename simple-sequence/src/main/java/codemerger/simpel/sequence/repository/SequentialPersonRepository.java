@@ -1,6 +1,6 @@
 package codemerger.simpel.sequence.repository;
 
-import codemerger.simpel.sequence.entities.SequentialPerson;
+import codemerger.simpel.sequence.entities.Person;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -14,8 +14,8 @@ import java.util.List;
  * @author: Michael Bielang, b137ang@codemerger.com.
  * @version: java version "14" 2020-03-17
  */
-public interface SequentialPersonRepository extends CrudRepository<SequentialPerson, Long> {
+public interface SequentialPersonRepository extends CrudRepository<Person, Long> {
 
     @Override
-    List<SequentialPerson> findAll();
+    List<Person> findAll();
 }

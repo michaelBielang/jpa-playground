@@ -20,7 +20,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @Entity(name = "SEQUENTIAL_PERSON")
-public class SequentialPerson {
+public class Person {
 
     @Id
     private Long id;
@@ -29,7 +29,7 @@ public class SequentialPerson {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    public SequentialPerson(String firstName, String lastName) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

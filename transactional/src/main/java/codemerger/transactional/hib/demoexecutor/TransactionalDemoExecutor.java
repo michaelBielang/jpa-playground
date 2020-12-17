@@ -1,8 +1,9 @@
-package codemerger.transactional.hib.event;
+package codemerger.transactional.hib.demoexecutor;
 
+import codemerger.transactional.hib.events.TriggerTransactionalDemoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -19,16 +20,19 @@ import java.util.NoSuchElementException;
  */
 
 @Component
-public class DemoEventHandler {
+public class TransactionalDemoExecutor {
 
     @Autowired
     private DataManagerService dataManagerService;
 
+    @Autowired
+    private ApplicationEventPublisher applicationEventPublisher;
+
     /**
      * Could be a CommandLineRunner or PostConstruct be too
      */
-    @EventListener(ApplicationReadyEvent.class)
-    public void executeDemoCode() {
+    @EventListener(TriggerTransactionalDemoEvent.class)
+    public void executeTransactionalDemo() {
 
         try {
             // HAS ENTRIES
@@ -50,6 +54,7 @@ public class DemoEventHandler {
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
+        dataManagerService.deleteAllPersons();
     }
 
     private void printAmountOfPersons(DataManagerService dataManagerService) {

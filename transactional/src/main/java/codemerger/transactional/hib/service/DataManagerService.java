@@ -71,8 +71,12 @@ public class DataManagerService {
         return transactionalDatabaseService.getPersons();
     }
 
-    private Person getNewPerson() {
+    public Person getNewPerson() {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
+    }
+
+    public Person save(Person person) {
+        return transactionalDatabaseService.save(person);
     }
 
     public void deleteAllPersons() {

@@ -1,4 +1,4 @@
-package codemerger.simpel.sequence.eventhandler;
+package codemerger.simpel.sequence.demoexecutor;
 
 import codemerger.simpel.sequence.entities.Person;
 import codemerger.simpel.sequence.service.PersonHandlerService;
@@ -18,21 +18,24 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class SpringEventHandler {
+public class SequenceDemoExecutor {
 
     @Autowired
     private PersonHandlerService personHandlerService;
 
     @EventListener(ApplicationReadyEvent.class)
     public void runDemo() {
-        final Person sequentialDemoPerson = personHandlerService.createRandomPerson();
-        final Person storedPerson = personHandlerService.savePerson(sequentialDemoPerson);
+        final Person storedPerson = getPerson();
 
-        final Person sequentialDemoPerson2 = personHandlerService.createRandomPerson();
-        final Person storedPerson2 = personHandlerService.savePerson(sequentialDemoPerson2);
+        final Person storedPerson2 = getPerson();
 
         System.out.println("Here we go:");
         System.out.println(storedPerson);
         System.out.println(storedPerson2);
+    }
+
+    private Person getPerson() {
+        final Person sequentialDemoPerson = personHandlerService.createRandomPerson();
+        return personHandlerService.savePerson(sequentialDemoPerson);
     }
 }

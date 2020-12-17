@@ -1,6 +1,6 @@
 package codemerger.simpel.sequence.service;
 
-import codemerger.simpel.sequence.dto.SequentialPerson;
+import codemerger.simpel.sequence.entities.SequentialPerson;
 import codemerger.simpel.sequence.repository.SequentialPersonRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

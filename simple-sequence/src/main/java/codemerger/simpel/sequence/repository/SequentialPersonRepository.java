@@ -1,6 +1,6 @@
 package codemerger.simpel.sequence.repository;
 
-import codemerger.simpel.sequence.dto.SequentialPerson;
+import codemerger.simpel.sequence.entities.SequentialPerson;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

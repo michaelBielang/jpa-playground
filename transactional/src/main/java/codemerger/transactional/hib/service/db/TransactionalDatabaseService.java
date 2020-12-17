@@ -1,6 +1,6 @@
 package codemerger.transactional.hib.service.db;
 
-import codemerger.transactional.hib.dto.Person;
+import codemerger.transactional.hib.entities.Person;
 import codemerger.transactional.hib.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

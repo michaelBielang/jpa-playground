@@ -1,16 +1,16 @@
-package codemerger.simpel.sequence.dto;
+package codemerger.transactional.hib.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
  * Organisation: Codemerger Ldt.
  * Project: sequence
- * Package: codemerger.simpel.sequence.dto
+ * Package: codemerger.transactional.hib.dto
  * Date: 13.12.2020
  *
  * @author: Michael Bielang, b137ang@codemerger.com.
@@ -19,17 +19,16 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
-@Entity(name = "SEQUENTIAL_PERSON")
-public class SequentialPerson {
+@Entity
+public class Person {
 
     @Id
-    private Long id;
-    @Column(name = "FIRST_NAME")
+    @GeneratedValue
+    private long id;
     private String firstName;
-    @Column(name = "LAST_NAME")
     private String lastName;
 
-    public SequentialPerson(String firstName, String lastName) {
+    public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -1,6 +1,6 @@
 package codemerger.transactional.hib.service;
 
-import codemerger.transactional.hib.dto.Person;
+import codemerger.transactional.hib.entities.Person;
 import codemerger.transactional.hib.service.db.DatabaseNoTransactionalService;
 import codemerger.transactional.hib.service.db.TransactionalDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;

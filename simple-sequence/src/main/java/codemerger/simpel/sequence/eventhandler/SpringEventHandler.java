@@ -1,6 +1,6 @@
 package codemerger.simpel.sequence.eventhandler;
 
-import codemerger.simpel.sequence.dto.SequentialPerson;
+import codemerger.simpel.sequence.entities.SequentialPerson;
 import codemerger.simpel.sequence.service.PersonHandlerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

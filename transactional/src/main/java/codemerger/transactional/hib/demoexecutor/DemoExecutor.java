@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 /**
@@ -24,9 +25,19 @@ public class DemoExecutor {
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
+    @Async
     @EventListener(ApplicationReadyEvent.class)
-    public void triggerDemoExecutors() {
+    public void triggerDemoExecutors() throws InterruptedException {
+
+        System.out.println("OUTPUT STATE DEMO:");
         applicationEventPublisher.publishEvent(new TriggerStateDemoEvent(this));
+
+        printNewBlock();
         applicationEventPublisher.publishEvent(new TriggerTransactionalDemoEvent(this));
+    }
+
+    private void printNewBlock() {
+        System.out.println("\n" + "###############");
+        System.out.println("\n" + "OUTPUT TRANSACTION DEMO:" + "\n");
     }
 }

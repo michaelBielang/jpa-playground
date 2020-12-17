@@ -1,10 +1,10 @@
 package codemerger.transactional.hib.service;
 
 import codemerger.transactional.hib.entities.Person;
-import codemerger.transactional.hib.service.db.DatabaseNoTransactionalService;
-import codemerger.transactional.hib.service.db.TransactionalDatabaseService;
+import codemerger.transactional.hib.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -26,9 +26,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 public class DataManagerService {
 
     @Autowired
-    private DatabaseNoTransactionalService databaseNoTransactionalService;
-    @Autowired
-    private TransactionalDatabaseService transactionalDatabaseService;
+    private PersonRepository personRepository;
 
     private String getCurrentMethod() {
         return Thread.currentThread()
@@ -36,50 +34,71 @@ public class DataManagerService {
                 .getMethodName();
     }
 
-    @Transactional
-    public void createPersonWithException() throws NoSuchElementException {
+    public void createPersonNoTransactional() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
-        databaseNoTransactionalService.save(person);
+        saveWithoutTransaction(person);
+
         throw new NoSuchElementException("Random Exception");
     }
 
     @Transactional
-    public void createPersonWithExceptionRequiresNew() throws NoSuchElementException {
+    public void createPersonRequiresNew() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
-        transactionalDatabaseService.saveRequiresNew(person);
+        saveRequiresNew(person);
 
         throw new NoSuchElementException("Random Exception");
     }
 
-    public void createPersonExceptionAfterTransactional() throws NoSuchElementException {
+    @Transactional
+    public void createPersonExceptionInTransactional() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
-        transactionalDatabaseService.save(person);
+        save(person);
 
         throw new NoSuchElementException("Random Exception");
     }
+
+    @Transactional
+    public void createAndSavePersonWithoutException() throws NoSuchElementException {
+        System.out.println(getCurrentMethod());
+
+        final Person person = getNewPerson();
+
+        save(person);
+    }
+
 
     public List<Person> getPersonInDb() {
-        return transactionalDatabaseService.getPersons();
+        return personRepository.findAll();
     }
 
     public Person getNewPerson() {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
     }
 
+
     public Person save(Person person) {
-        return transactionalDatabaseService.save(person);
+        return personRepository.save(person);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void saveRequiresNew(Person person) {
+        personRepository.save(person);
+    }
+
+    public void saveWithoutTransaction(Person person) {
+        personRepository.save(person);
     }
 
     public void deleteAllPersons() {
-        transactionalDatabaseService.deleteAllPersons();
+        personRepository.deleteAll();
     }
 }

@@ -3,8 +3,8 @@ package codemerger.transactional.hib.demoexecutor;
 import codemerger.transactional.hib.events.TriggerTransactionalDemoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.EventListener;
+import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
@@ -20,37 +20,31 @@ import java.util.NoSuchElementException;
  */
 
 @Component
-public class TransactionalDemoExecutor {
+public class TransactionalDemoExecutor implements ApplicationListener<TriggerTransactionalDemoEvent> {
 
     @Autowired
     private DataManagerService dataManagerService;
 
-    @Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
-
-    /**
-     * Could be a CommandLineRunner or PostConstruct be too
-     */
-    @EventListener(TriggerTransactionalDemoEvent.class)
-    public void executeTransactionalDemo() {
-
+    @Override
+    @Async
+    public void onApplicationEvent(TriggerTransactionalDemoEvent event) {
         try {
             // HAS ENTRIES
-            dataManagerService.createPersonExceptionAfterTransactional();
+            dataManagerService.createPersonExceptionInTransactional();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
 
         try {
-            // HAS ENTRIES
-            dataManagerService.createPersonWithExceptionRequiresNew();
+            // ROLLBACK - HAS NO ENTRIES
+            dataManagerService.createPersonRequiresNew();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
 
         try {
-            // HAS NO ENTRIES
-            dataManagerService.createPersonWithException();
+            // NO ROLLBACK - HAS ENTRIES
+            dataManagerService.createPersonNoTransactional();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
@@ -59,7 +53,7 @@ public class TransactionalDemoExecutor {
 
     private void printAmountOfPersons(DataManagerService dataManagerService) {
         System.out.println("Number of Persons: " + dataManagerService.getPersonInDb().size());
-        System.out.println("########### \n");
+        System.out.println("");
     }
 
     private void deletePersonsFromDb(DataManagerService dataManagerService) {

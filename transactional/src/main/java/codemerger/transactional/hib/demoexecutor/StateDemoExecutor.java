@@ -1,11 +1,14 @@
 package codemerger.transactional.hib.demoexecutor;
 
 import codemerger.transactional.hib.entities.Person;
-import codemerger.transactional.hib.events.TriggerTransactionalDemoEvent;
+import codemerger.transactional.hib.events.TriggerStateDemoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.event.EventListener;
+import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import javax.transaction.Transactional;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
@@ -20,14 +23,15 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
  */
 
 @Component
-public class StateDemoExecutor {
+@Transactional
+public class StateDemoExecutor implements ApplicationListener<TriggerStateDemoEvent> {
 
     @Autowired
     private DataManagerService dataManagerService;
 
-    @EventListener(TriggerTransactionalDemoEvent.class)
-    public void executeStateDemo() {
-
+    @Override
+    @Async
+    public void onApplicationEvent(TriggerStateDemoEvent event) {
         final Person newPerson = getNewPerson();
         final Person sessionPersistedPerson = dataManagerService.save(newPerson);
 
@@ -43,10 +47,11 @@ public class StateDemoExecutor {
                         System.out.println("Ouch");
                     }
                 });
+
+        dataManagerService.deleteAllPersons();
     }
 
     private Person getNewPerson() {
         return new Person(randomAlphabetic(10), randomAlphabetic(10));
     }
-
 }

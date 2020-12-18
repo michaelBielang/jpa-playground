@@ -65,7 +65,6 @@ public class DataManagerService {
         }
     }
 
-
     @Transactional
     public void insertPersonExceptionInTransactional() {
         System.out.println(getCurrentMethod());
@@ -75,15 +74,6 @@ public class DataManagerService {
         save(person);
 
         throw new NoSuchElementException("Random Exception");
-    }
-
-    @Transactional
-    public void createAndSavePersonWithoutException() {
-        System.out.println(getCurrentMethod());
-
-        final Person person = getNewPerson();
-
-        save(person);
     }
 
     public List<Person> getPersonInDb() {

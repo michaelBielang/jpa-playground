@@ -49,12 +49,18 @@ FROM dual;
 
 ## Articles
 
+### Transactions
+
 https://dzone.com/articles/spring-transaction-propagation
+
+https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative
+
+### Hibernate
+
+https://docs.jboss.org/hibernate/core/3.3/reference/en/html/objectstate.html#objectstate-modifying
+
+### Parent & Child POM
 
 http://maven.apache.org/pom.html#Inheritance
 
 https://howtodoinjava.com/maven/maven-parent-child-pom-example
-
-https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative
-
-https://dzone.com/articles/spring-transaction-propagation

@@ -39,5 +39,4 @@ public class ChildPersonManagerService {
     private void save(Person person) {
         personRepository.save(person);
     }
-
 }

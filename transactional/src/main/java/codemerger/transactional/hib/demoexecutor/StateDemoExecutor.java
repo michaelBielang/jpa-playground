@@ -23,7 +23,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
  */
 
 @Component
-@Transactional
+@Transactional // it is crucial to have the annotation here so that the AOP Proxy is in control of the Person obj
 public class StateDemoExecutor implements ApplicationListener<TriggerStateDemoEvent> {
 
     @Autowired

@@ -39,11 +39,20 @@ Open a new query console and execute
 
 ```h2
 CREATE SEQUENCE init_sequence
-START WITH 1
-INCREMENT BY 1
-MINVALUE 1;
+    START WITH 1
+    INCREMENT BY 1
+    MINVALUE 1;
 
-SELECT init_sequence.nextval FROM dual; 
+SELECT init_sequence.nextval
+FROM dual; 
 ```
 
+## Articles
 
+https://dzone.com/articles/spring-transaction-propagation
+
+http://maven.apache.org/pom.html#Inheritance
+
+https://howtodoinjava.com/maven/maven-parent-child-pom-example
+
+https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative

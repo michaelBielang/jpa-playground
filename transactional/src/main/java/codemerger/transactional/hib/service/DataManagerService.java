@@ -34,29 +34,39 @@ public class DataManagerService {
                 .getMethodName();
     }
 
-    public void createPersonNoTransactional() throws NoSuchElementException {
+    public void insertPersonNoTransactional() throws NoSuchElementException {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
-        saveWithoutTransaction(person);
+        save(person);
 
         throw new NoSuchElementException("Random Exception");
     }
 
-    @Transactional
-    public void createPersonRequiresNew() throws NoSuchElementException {
+    /**
+     * This will create one physical transaction PT1, and within a logical transaction LT1.
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void insertParentPerson() {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
-        saveRequiresNew(person);
+        save(person);
 
-        throw new NoSuchElementException("Random Exception");
+        try {
+            insertChildPerson();
+        } catch (NoSuchElementException noSuchElementException) {
+            System.out.println("Catching child exception");
+        }
     }
 
-    @Transactional
-    public void createPersonExceptionInTransactional() throws NoSuchElementException {
+    /**
+     * This transaction lives in the same physical transaction (PT1) as its parent but has an own logical transaction LT2
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void insertChildPerson() {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
@@ -67,14 +77,24 @@ public class DataManagerService {
     }
 
     @Transactional
-    public void createAndSavePersonWithoutException() throws NoSuchElementException {
+    public void insertPersonExceptionInTransactional() {
+        System.out.println(getCurrentMethod());
+
+        final Person person = getNewPerson();
+
+        save(person);
+
+        throw new NoSuchElementException("Random Exception");
+    }
+
+    @Transactional
+    public void createAndSavePersonWithoutException() {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
 
         save(person);
     }
-
 
     public List<Person> getPersonInDb() {
         return personRepository.findAll();
@@ -84,18 +104,8 @@ public class DataManagerService {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
     }
 
-
     public Person save(Person person) {
         return personRepository.save(person);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void saveRequiresNew(Person person) {
-        personRepository.save(person);
-    }
-
-    public void saveWithoutTransaction(Person person) {
-        personRepository.save(person);
     }
 
     public void deleteAllPersons() {

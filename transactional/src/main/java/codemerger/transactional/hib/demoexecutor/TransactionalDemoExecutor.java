@@ -30,21 +30,18 @@ public class TransactionalDemoExecutor implements ApplicationListener<TriggerTra
     public void onApplicationEvent(TriggerTransactionalDemoEvent event) {
         try {
             // HAS ENTRIES
-            dataManagerService.createPersonExceptionInTransactional();
+            dataManagerService.insertPersonExceptionInTransactional();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
 
-        try {
-            // ROLLBACK - HAS NO ENTRIES
-            dataManagerService.createPersonRequiresNew();
-        } catch (NoSuchElementException noSuchElementException) {
-            printAndReset(dataManagerService);
-        }
+        // ROLLBACK - HAS NO ENTRIES
+        dataManagerService.insertParentPerson();
+        printAndReset(dataManagerService);
 
         try {
             // NO ROLLBACK - HAS ENTRIES
-            dataManagerService.createPersonNoTransactional();
+            dataManagerService.insertPersonNoTransactional();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }

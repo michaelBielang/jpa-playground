@@ -29,7 +29,7 @@ public class DataManagerService {
     private PersonRepository personRepository;
 
     @Autowired
-    private ChildManagerService childManagerService;
+    private ChildPersonManagerService childPersonManagerService;
 
     private String getCurrentMethod() {
         return Thread.currentThread()
@@ -59,7 +59,7 @@ public class DataManagerService {
         save(person);
 
         try {
-            childManagerService.insertChildPerson(getNewPerson());
+            childPersonManagerService.insertChildPerson(getNewPerson());
         } catch (NoSuchElementException noSuchElementException) {
             System.out.println("Catching child exception");
         }

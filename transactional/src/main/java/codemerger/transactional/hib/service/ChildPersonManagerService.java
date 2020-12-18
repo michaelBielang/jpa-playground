@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
  */
 
 @Service
-public class ChildManagerService {
+public class ChildPersonManagerService {
 
     @Autowired
     private PersonRepository personRepository;

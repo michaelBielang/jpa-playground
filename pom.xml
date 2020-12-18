@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- http://maven.apache.org/pom.html#Inheritance -->
-<!-- https://howtodoinjava.com/maven/maven-parent-child-pom-example -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +12,7 @@
     <artifactId>jpa</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Codemerger BOM</name>
-    <description>Demo project for JPA</description>
+    <description>Demo project for persistence operations</description>
 
     <packaging>pom
     </packaging><!-- https://stackoverflow.com/questions/18733729/packaging-jar-is-invalid-aggregator-project-need-pom-as-packaging -->

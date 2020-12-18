@@ -19,11 +19,21 @@ This demo project is supposed to give the trainee a brief idea of the concepts.
 
 ## Todos for further versions
 
+Implement demo about:
+
+- https://docs.jboss.org/hibernate/core/3.3/reference/en/html/objectstate.html#objectstate-modifying
+- https://stackoverflow.com/questions/2573739/what-are-detached-persistent-and-transient-objects-in-hibernate
+- Maybe: DUAL Demo
+- Queries: https://www.baeldung.com/spring-data-jpa-query
+- optimistic (with `@Version`) vs. pessimistic locking, see https://www.baeldung.com/jpa-optimistic-locking
+  plus https://stackoverflow.com/questions/58786195/what-is-the-relation-between-spring-transactional-and-spring-lock-annotation/
+-
+
 ## Execute
 
 ### Main program
 
-Run the ```main``` method in each module.
+Run the ```main``` method in **each** module.
 
 ### Manual sequence try out
 

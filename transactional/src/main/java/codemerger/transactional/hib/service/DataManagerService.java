@@ -28,6 +28,9 @@ public class DataManagerService {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private ChildManagerService childManagerService;
+
     private String getCurrentMethod() {
         return Thread.currentThread()
                 .getStackTrace()[1 + 1]
@@ -56,25 +59,12 @@ public class DataManagerService {
         save(person);
 
         try {
-            insertChildPerson();
+            childManagerService.insertChildPerson(getNewPerson());
         } catch (NoSuchElementException noSuchElementException) {
             System.out.println("Catching child exception");
         }
     }
 
-    /**
-     * This transaction lives in the same physical transaction (PT1) as its parent but has an own logical transaction LT2
-     */
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void insertChildPerson() {
-        System.out.println(getCurrentMethod());
-
-        final Person person = getNewPerson();
-
-        save(person);
-
-        throw new NoSuchElementException("Random Exception");
-    }
 
     @Transactional
     public void insertPersonExceptionInTransactional() {

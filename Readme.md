@@ -4,7 +4,7 @@
 
 # Introduction
 
-This repository is part of my upcoming youtube series on how different `JPA` functionalities work.
+This repository is part of my upcoming youtube series `Persistence Operations`.
 
 This demo project is supposed to give the trainee a brief idea of the concepts.
 

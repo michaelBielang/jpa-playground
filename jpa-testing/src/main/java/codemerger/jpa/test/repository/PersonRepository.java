@@ -27,6 +27,6 @@ public interface PersonRepository extends CrudRepository<Person, String> {
 
     Person findByLastName(String lastName);
 
-    @Query(value = "select * from Person where email = :email and firstName = :firstName and lastName = :lastName", nativeQuery = true)
+    @Query(value = "select * from Person where EMAIL = :email and FIRST_NAME = :firstName and LAST_NAME = :lastName", nativeQuery = true)
     Person findByAllFields(@Param("email") String email, @Param("firstName") String firstName, @Param("lastName") String lastName);
 }

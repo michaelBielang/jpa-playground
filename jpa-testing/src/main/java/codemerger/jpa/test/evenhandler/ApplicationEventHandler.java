@@ -26,7 +26,7 @@ public class ApplicationEventHandler {
     private PersonRepository personRepository;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void testSQL() {
+    public void testSQL() throws InterruptedException {
         final Person randomPerson = new Person("1", "2", "3");
 
         personRepository.save(randomPerson);

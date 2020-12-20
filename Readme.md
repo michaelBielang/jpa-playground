@@ -15,7 +15,7 @@ This demo project is supposed to give the trainee a brief idea of the concepts.
 ## Features
 
 * [x] Spring Boot and Java 14
-* [x] H2 im memory
+* [x] H2 in memory
 
 ## Todos for further versions
 

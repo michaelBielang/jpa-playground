@@ -48,13 +48,12 @@ To get familiar with the sequence table feel free to create a datasource with in
 Open a new query console and execute
 
 ```h2
-CREATE SEQUENCE init_sequence
-    START WITH 1
-    INCREMENT BY 1
-    MINVALUE 1;
-
-SELECT init_sequence.nextval
-FROM dual; 
+CREATE TABLE PERSON
+(
+  EMAIl      VARCHAR(255) PRIMARY KEY,
+  FIRST_NAME VARCHAR(255),
+  LAST_NAME  VARCHAR(255)
+);
 ```
 
 ## Articles
@@ -68,6 +67,8 @@ https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.
 ### Hibernate
 
 https://docs.jboss.org/hibernate/core/3.3/reference/en/html/objectstate.html#objectstate-modifying
+
+https://docs.spring.io/spring-boot/docs/2.1.0.M1/reference/html/howto-database-initialization.html
 
 ### Parent & Child POM
 

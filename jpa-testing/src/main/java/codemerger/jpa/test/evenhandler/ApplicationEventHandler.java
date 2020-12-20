@@ -8,6 +8,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Organisation: Codemerger Ldt.
  * Project: jpa
@@ -33,5 +35,6 @@ public class ApplicationEventHandler {
 
         final Person resultPerson = personRepository.findByEmail("1");
         System.out.println(resultPerson);
+        sleep(500000000);
     }
 }

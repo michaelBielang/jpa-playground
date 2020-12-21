@@ -18,8 +18,9 @@
     </packaging><!-- https://stackoverflow.com/questions/18733729/packaging-jar-is-invalid-aggregator-project-need-pom-as-packaging -->
 
     <modules>
-        <module>simple-sequence</module>
-        <module>transactional</module>
+        <module>jpa-testing</module>
+        <module>none-hibernate-managed-sequence</module>
+        <module>spring-transactional</module>
     </modules>
 
     <properties>

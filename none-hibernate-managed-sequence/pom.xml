@@ -5,7 +5,7 @@
     <groupId>codemerger.simple</groupId>
     <artifactId>sequence</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sequence</name>
+    <name>none-hibernate-managed-sequence</name>
     <description>This module works with a sequence table which is not managed by hibernate</description>
 
     <parent>

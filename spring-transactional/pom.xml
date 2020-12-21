@@ -2,9 +2,10 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>transactional.hib</artifactId>
+    <groupId>codemerger.simple</groupId>
+    <artifactId>spring.transactional</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>transactional</name>
+    <name>spring-transactional</name>
     <description>Demo module for transactional functionality</description>
 
     <parent>

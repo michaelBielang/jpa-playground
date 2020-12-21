@@ -3,4 +3,5 @@ doing for you in the database level.
 
 ### Q: Why would I manually create sequences when I can use hibernate in my little projects?
 
-**A: You would not** :relaxed:
+A: You would not :relaxed:
+

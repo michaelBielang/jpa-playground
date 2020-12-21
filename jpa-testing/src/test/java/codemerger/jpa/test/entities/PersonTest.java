@@ -52,9 +52,20 @@ class PersonTest {
         assertThat(personRepository.findByAllFields(email, firstName, lastName)).isNotNull();
     }
 
+    /**
+     * /src/main/resources is a Maven project structure convention.
+     * It's a path inside your project where you place resources.
+     * During the build step, Maven will take files in there and place them in the appropriate place for you
+     * to use them in your runtime classpath, eg in an executable .jar,
+     * some physical file system location used in the classpath (with java's -cp option), etc.
+     * <p>
+     * I could choose to build my application myself or with a different build tool.
+     * In such a case, /src/main/resources would not exist.
+     * However, the intention is for the classpath to be the same, ie. to contain the same resources and .class files.
+     */
     @Test
     @Sql("classpath:setup_person_test.sql")
-    void whenInitializedByDbUnit_thenFindsByName() {
+    void whenInitializedByDbUnit_thenFindsByEmail() {
         Person user = personRepository.findByEmail("createdPerson@gmail.com");
         assertThat(user).isNotNull();
     }

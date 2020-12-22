@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.Thread.sleep;
@@ -27,7 +26,7 @@ import static java.lang.Thread.sleep;
 
 @EnableAsync
 @Component
-@Transactional(propagation = Propagation.NESTED, isolation = Isolation.READ_UNCOMMITTED)
+@Transactional(isolation = Isolation.READ_UNCOMMITTED)
 public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
 
     @Autowired

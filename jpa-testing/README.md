@@ -25,7 +25,7 @@ CREATE TABLE PERSON
 );
 ```
 
-**DML** | This should be the content of the data.sql for example:
+**DML** | This should be the content of the insert_test_person.sql for example:
 
 ```h2
 INSERT INTO PERSON (EMAIL, LAST_NAME)

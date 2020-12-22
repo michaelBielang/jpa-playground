@@ -5,7 +5,6 @@ import codemerger.transactional.hib.events.TriggerStateDemoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
@@ -30,7 +29,6 @@ public class StateDemoExecutor implements ApplicationListener<TriggerStateDemoEv
     private DataManagerService dataManagerService;
 
     @Override
-    @Async
     public void onApplicationEvent(TriggerStateDemoEvent event) {
         final Person newPerson = getNewPerson();
         final Person sessionPersistedPerson = dataManagerService.save(newPerson);
@@ -38,7 +36,7 @@ public class StateDemoExecutor implements ApplicationListener<TriggerStateDemoEv
         final String newFirstName = randomAlphabetic(10);
         sessionPersistedPerson.setFirstName(newFirstName);
 
-        dataManagerService.getPersonInDb().stream()
+        dataManagerService.findAllPersons().stream()
                 .findFirst()
                 .ifPresent(person -> {
                     if (person.getFirstName().equals(newFirstName)) {

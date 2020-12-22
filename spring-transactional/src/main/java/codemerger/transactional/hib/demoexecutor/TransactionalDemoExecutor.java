@@ -4,7 +4,6 @@ import codemerger.transactional.hib.events.TriggerTransactionalDemoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
@@ -26,7 +25,6 @@ public class TransactionalDemoExecutor implements ApplicationListener<TriggerTra
     private DataManagerService dataManagerService;
 
     @Override
-    @Async
     public void onApplicationEvent(TriggerTransactionalDemoEvent event) {
         try {
             // HAS ENTRIES
@@ -49,7 +47,7 @@ public class TransactionalDemoExecutor implements ApplicationListener<TriggerTra
     }
 
     private void printAmountOfPersons(DataManagerService dataManagerService) {
-        System.out.println("Number of Persons: " + dataManagerService.getPersonInDb().size());
+        System.out.println("Number of Persons: " + dataManagerService.findAllPersons().size());
         System.out.println("");
     }
 

@@ -76,7 +76,7 @@ public class DataManagerService {
         throw new NoSuchElementException("Random Exception");
     }
 
-    public List<Person> getPersonInDb() {
+    public List<Person> findAllPersons() {
         return personRepository.findAll();
     }
 

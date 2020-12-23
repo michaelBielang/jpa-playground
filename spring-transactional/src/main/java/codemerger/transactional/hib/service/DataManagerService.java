@@ -84,10 +84,16 @@ public class DataManagerService {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
     }
 
+    /**
+     * This method suspends transaction A and creates a new one C in an own EntityManager
+     * We use requires_new to ensure an object is stored in the DB when leaving this method.
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public Person save(Person person) {
-        return personRepository.save(person);
+        return personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void deleteAllPersons() {
         personRepository.deleteAll();
     }

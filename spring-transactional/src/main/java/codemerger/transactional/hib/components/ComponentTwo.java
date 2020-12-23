@@ -3,6 +3,7 @@ package codemerger.transactional.hib.components;
 import codemerger.transactional.hib.entities.Person;
 import codemerger.transactional.hib.events.ComponentTwoEvent;
 import codemerger.transactional.hib.service.DataManagerService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
@@ -26,35 +27,24 @@ import static java.lang.Thread.sleep;
 
 @EnableAsync
 @Component
-@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+@Transactional(isolation = Isolation.READ_UNCOMMITTED) // TODO this can and should be switch to COMMITED/UNCOMMITED
 public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
 
     @Autowired
     private DataManagerService dataManagerService;
 
-    public void startTransactionTwo() {
-        new Thread(() -> {
-            final Person person = dataManagerService.findAllPersons().get(0);
-            System.out.println(person);
-            try {
-                sleep(1500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println(person);
-        }).start();
-    }
-
+    /**
+     * Here lives Transaction B in its own EntityManager
+     */
+    @SneakyThrows
     @Override
     @Async
     public void onApplicationEvent(ComponentTwoEvent event) {
+        sleep(250); // ensuring that transaction A+C create and persist a new person
+
         final Person person = dataManagerService.findAllPersons().get(0);
-        System.out.println("ComponentTwo - 1: " + person);
-        try {
-            sleep(1500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("ComponentTwo - 2: " + person);
+        System.out.println("ComponentTWO: " + person);
+
+        sleep(2500); // Transaction B will commit and close the EM
     }
 }

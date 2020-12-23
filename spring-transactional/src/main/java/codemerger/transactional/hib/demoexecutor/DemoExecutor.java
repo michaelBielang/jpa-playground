@@ -26,6 +26,8 @@ import java.util.Scanner;
 @Component
 public class DemoExecutor {
 
+    private final static Scanner SCANNER = new Scanner(System.in);
+
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -35,10 +37,9 @@ public class DemoExecutor {
     @EventListener(ApplicationReadyEvent.class)
     public void triggerDemoExecutors() {
 
-        final Scanner scanner = new Scanner(System.in);
         printInputCommand();
 
-        String input = scanner.nextLine();
+        String input = SCANNER.nextLine();
 
         while (!input.equalsIgnoreCase("exit")) {
             switch (input) {
@@ -49,14 +50,13 @@ public class DemoExecutor {
                     applicationEventPublisher.publishEvent(new TriggerTransactionalDemoEvent(this));
                     break;
                 case "isolation":
-                    //applicationEventPublisher.publishEvent(new TriggerIsolationDemoEvent(this));
                     applicationEventPublisher.publishEvent(new ComponentOneEvent(this));
                     applicationEventPublisher.publishEvent(new ComponentTwoEvent(this));
                 default:
                     break;
             }
             printInputCommand();
-            input = scanner.nextLine();
+            input = SCANNER.nextLine();
             dataManagerService.deleteAllPersons();
         }
     }

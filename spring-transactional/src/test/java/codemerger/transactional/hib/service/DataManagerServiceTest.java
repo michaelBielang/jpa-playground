@@ -24,6 +24,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 class DataManagerServiceTest {
 
-
     // TODO - michael.bielang: 22.12.2020
 }

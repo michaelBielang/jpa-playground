@@ -56,10 +56,6 @@ CREATE TABLE PERSON
 );
 ```
 
-## Isolation - Sequence diagram
-
-![iso_sequence_diagram](img/isolation_sequence_diagram.png)
-
 ## Articles
 
 ### Transactions

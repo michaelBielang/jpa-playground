@@ -15,7 +15,7 @@ This module presents Spring Transactional features such as propagation and isola
 
 ### Main program
 
-Run the ```main``` method in the TransactionalApplication module.
+Run the ```main``` method in the TransactionalApplication class.
 
 ## Isolation - Sequence diagram
 

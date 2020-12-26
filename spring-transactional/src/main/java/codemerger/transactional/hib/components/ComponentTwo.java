@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.Thread.sleep;
@@ -27,7 +28,8 @@ import static java.lang.Thread.sleep;
 
 @EnableAsync
 @Component
-@Transactional(isolation = Isolation.READ_UNCOMMITTED) // TODO this can and should be switch to COMMITED/UNCOMMITED
+@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_UNCOMMITTED)
+// TODO this can and should be switch to COMMITTED/UNCOMMITTED and to REQUIRED/REQUIRED_NEW
 public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
 
     @Autowired
@@ -40,11 +42,11 @@ public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
     @Override
     @Async
     public void onApplicationEvent(ComponentTwoEvent event) {
-        sleep(250); // ensuring that transaction A+C create and persist a new person
+        System.out.println("Entering Two");
+        sleep(500); // ensuring that transaction A+C create and persist a new person
 
         final Person person = dataManagerService.findAllPersons().get(0);
         System.out.println("ComponentTWO: " + person);
-
-        sleep(2500); // Transaction B will commit and close the EM
+        // Transaction B will commit and close the EM
     }
 }

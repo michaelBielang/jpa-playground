@@ -26,7 +26,7 @@ import java.util.Scanner;
 @Component
 public class DemoExecutor {
 
-    private final static Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;

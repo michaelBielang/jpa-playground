@@ -1,8 +1,8 @@
-# Status
+## Status
 
 [![Project Status: WIP – Initial development is in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 
-# Introduction
+## Introduction
 
 This repository is part of my upcoming youtube series `Persistence Operations`.
 
@@ -55,6 +55,10 @@ CREATE TABLE PERSON
   LAST_NAME  VARCHAR(255)
 );
 ```
+
+## Isolation - Sequence diagram
+
+![iso_sequence_diagram](documentation/isolation_sequence_diagram.png)
 
 ## Articles
 

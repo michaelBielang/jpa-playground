@@ -45,7 +45,7 @@ public class ComponentOne implements ApplicationListener<ComponentOneEvent> {
     @Override
     @Async
     public void onApplicationEvent(ComponentOneEvent event) {
-        // we are in transaction b .save will create an own transaction
+        // we are in transaction a .save will create an own transaction c
         saveNewPerson();
 
         // now we resume the suspended transaction A
@@ -55,7 +55,7 @@ public class ComponentOne implements ApplicationListener<ComponentOneEvent> {
         setNameAndFlush(person);
 
         System.out.println("Sleeping in ComponentONE");
-        sleep(2000); // by leaving this method with commit to the transaction and close the EM/**/
+        sleep(2000); // by leaving this method with commit to the transaction and close the EM/*Data*/
     }
 
     private void setNameAndFlush(Person person) {

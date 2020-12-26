@@ -50,9 +50,9 @@ Open a new query console and execute
 ```h2
 CREATE TABLE PERSON
 (
-  EMAIl      VARCHAR(255) PRIMARY KEY,
-  FIRST_NAME VARCHAR(255),
-  LAST_NAME  VARCHAR(255)
+  EMAIl      VARCHAR(255) PRIMARY KEY NOT NULL,
+  FIRST_NAME VARCHAR(255)             NOT NULL,
+  LAST_NAME  VARCHAR(255)             NOT NULL
 );
 ```
 

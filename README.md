@@ -68,6 +68,10 @@ https://dzone.com/articles/spring-transaction-propagation
 
 https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction-declarative
 
+### Isolations
+
+https://www.postgresql.org/docs/9.5/transaction-iso.html
+
 ### Hibernate
 
 https://docs.jboss.org/hibernate/core/3.3/reference/en/html/objectstate.html#objectstate-modifying

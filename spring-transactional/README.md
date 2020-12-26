@@ -35,6 +35,10 @@ Run the ```main``` method in the TransactionalApplication class.
 
 ![phantom-reads](../img/phantom-reads.png)
 
+### Summary
+
+![phantom-reads](../img/read-table.png)
+
 ## Articles
 
 ### Transactions

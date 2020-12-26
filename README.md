@@ -41,7 +41,7 @@ To get familiar with the sequence table feel free to create a datasource with in
 
 1.
 
-![h2 image](documentation/h2.JPG)
+![h2 image](img/h2.JPG)
 
 2.
 
@@ -58,7 +58,7 @@ CREATE TABLE PERSON
 
 ## Isolation - Sequence diagram
 
-![iso_sequence_diagram](documentation/isolation_sequence_diagram.png)
+![iso_sequence_diagram](img/isolation_sequence_diagram.png)
 
 ## Articles
 

@@ -19,7 +19,11 @@ Run the ```main``` method in the TransactionalApplication class.
 
 ## Isolation - Sequence diagram
 
-![iso_sequence_diagram](../img/isolation_sequence_diagram.png)
+![iso_sequence_diagram](../img/isolation-sequence-diagram.png)
+
+## Isolation - Class diagram
+
+![iso_sequence_diagram](../img/isolation-demo-class-diagram.png)
 
 ## Read options
 

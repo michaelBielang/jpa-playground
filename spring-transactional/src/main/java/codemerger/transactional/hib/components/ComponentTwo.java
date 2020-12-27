@@ -47,6 +47,6 @@ public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
 
         final Person person = dataManagerService.findAllPersons().get(0);
         System.out.println("ComponentTWO: " + person);
-        // Transaction B will commit and close the EM
+        // With leavig this method Transaction B will commit and close the EM
     }
 }

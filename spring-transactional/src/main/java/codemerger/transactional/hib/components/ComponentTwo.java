@@ -28,7 +28,7 @@ import static java.lang.Thread.sleep;
 
 @EnableAsync
 @Component
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_UNCOMMITTED)
+@Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_UNCOMMITTED)
 // TODO this can and should be switch to COMMITTED/UNCOMMITTED and to REQUIRED/REQUIRED_NEW
 public class ComponentTwo implements ApplicationListener<ComponentTwoEvent> {
 

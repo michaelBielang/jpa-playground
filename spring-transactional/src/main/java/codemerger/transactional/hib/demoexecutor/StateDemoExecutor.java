@@ -31,7 +31,7 @@ public class StateDemoExecutor implements ApplicationListener<TriggerStateDemoEv
     @Override
     public void onApplicationEvent(TriggerStateDemoEvent event) {
         final Person newPerson = getNewPerson();
-        final Person sessionPersistedPerson = dataManagerService.save(newPerson);
+        final Person sessionPersistedPerson = dataManagerService.saveForStateDemo(newPerson);
 
         final String newFirstName = randomAlphabetic(10);
         sessionPersistedPerson.setFirstName(newFirstName);

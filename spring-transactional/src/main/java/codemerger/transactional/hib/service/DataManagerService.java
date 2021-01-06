@@ -93,6 +93,10 @@ public class DataManagerService {
         return personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
     }
 
+    public Person saveForStateDemo(Person person) {
+        return personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void deleteAllPersons() {
         personRepository.deleteAll();

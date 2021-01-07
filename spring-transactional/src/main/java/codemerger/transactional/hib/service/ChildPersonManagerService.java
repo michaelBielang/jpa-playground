@@ -33,7 +33,7 @@ public class ChildPersonManagerService {
 
         save(person);
 
-        throw new NoSuchElementException("Random Exception");
+        throw new NoSuchElementException("Random Exception"); // this causes a rollback on LT1
     }
 
     private void save(Person person) {

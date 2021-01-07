@@ -21,3 +21,10 @@ This module presents different ways of how to interact with the database.
 ### Main program
 
 Run the ```main``` method in the DemoApplication class.
+
+## Knowledge
+
+### JPA criteria queries
+
+The JPA Criteria API provides an alternative way for defining JPA queries, which is mainly useful for building dynamic
+queries whose exact structure is only known at runtime.

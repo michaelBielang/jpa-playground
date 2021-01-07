@@ -1,6 +1,7 @@
-package codemerger.queries.demo.queryannotation;
+package codemerger.queries.demo.query;
 
 import codemerger.queries.demo.entities.Person;
+import codemerger.queries.demo.query.annotation.QueryAnnotationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -66,7 +66,7 @@ public class ComponentOne implements ApplicationListener<ComponentOneEvent> {
 
     private void saveNewPerson() {
         System.out.println("Saving a new Person in ComponentONE");
-        dataManagerService.save(dataManagerService.getNewPerson());
+        dataManagerService.saveForIsolation(dataManagerService.getNewPerson());
         System.out.println("Person saved in ComponentONE");
     }
 }

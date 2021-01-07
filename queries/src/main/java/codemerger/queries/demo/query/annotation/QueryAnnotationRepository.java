@@ -1,4 +1,4 @@
-package codemerger.queries.demo.queryannotation;
+package codemerger.queries.demo.query.annotation;
 
 import codemerger.queries.demo.entities.Person;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +20,6 @@ import java.util.List;
 @Repository
 public interface QueryAnnotationRepository extends CrudRepository<Person, Long> {
 
-    @Query(value = "select * from Person where POST_CODE between :from and :to", nativeQuery = true)
+    @Query(value = "select * from PERSON where POST_CODE between :from and :to", nativeQuery = true)
     List<Person> findPersonsInZipCodeRange(final int from, final int to);
 }

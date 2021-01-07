@@ -37,7 +37,7 @@ public class DataManagerService {
                 .getMethodName();
     }
 
-    public void insertPersonNoTransactional() throws NoSuchElementException {
+    public void insertPersonNoTransactional() {
         System.out.println(getCurrentMethod());
 
         final Person person = getNewPerson();
@@ -48,9 +48,9 @@ public class DataManagerService {
     }
 
     /**
-     * This will create one physical transaction PT1, and within a logical transaction LT1.
+     * This will create one physical transaction PT1, and within a logical transaction LT1 (LT2 lives within insertChildPerson)
      */
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional
     public void insertParentPerson() {
         System.out.println(getCurrentMethod());
 
@@ -84,17 +84,22 @@ public class DataManagerService {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
     }
 
+    @Transactional
+    public void save(Person person) {
+        personRepository.save(person);
+    }
+
     /**
      * This method suspends transaction A and creates a new one C in an own EntityManager
      * We use requires_new to ensure an object is stored in the DB when leaving this method.
      */
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public Person save(Person person) {
-        return personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
+    public void saveForIsolation(Person person) {
+        personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
     }
 
     public Person saveForStateDemo(Person person) {
-        return personRepository.save(person); // this command executes a commit and by leaving this method closes its EntityManager
+        return personRepository.save(person);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)

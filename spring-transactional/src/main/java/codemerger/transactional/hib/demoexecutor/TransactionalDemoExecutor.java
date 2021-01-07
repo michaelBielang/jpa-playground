@@ -27,13 +27,14 @@ public class TransactionalDemoExecutor implements ApplicationListener<TriggerTra
     @Override
     public void onApplicationEvent(TriggerTransactionalDemoEvent event) {
         try {
-            // HAS ENTRIES
+            // HAS NO ENTRIES
             dataManagerService.insertPersonExceptionInTransactional();
         } catch (NoSuchElementException noSuchElementException) {
             printAndReset(dataManagerService);
         }
 
-        // ROLLBACK - HAS NO ENTRIES
+        // This sequence will insert two persons one in insertParentPerson and another in insertChildPerson
+        // A rollback will be caused in insertChildPerson but not in the caller as a result we have ONE ENTRY
         dataManagerService.insertParentPerson();
         printAndReset(dataManagerService);
 

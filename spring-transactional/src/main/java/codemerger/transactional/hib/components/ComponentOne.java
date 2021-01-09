@@ -45,7 +45,7 @@ public class ComponentOne implements ApplicationListener<ComponentOneEvent> {
     @Override
     @Async
     public void onApplicationEvent(ComponentOneEvent event) {
-        // we are in transaction a .save will create an own transaction c
+        // we are in transaction a .saveForTransactionalDemo will create an own transaction c
         saveNewPerson();
 
         // now we resume the suspended transaction A

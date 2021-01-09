@@ -6,11 +6,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import util.InsertTestData;
 
 import java.util.List;
 
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static util.InsertTestData.insertTargetPerson;
 
 /**
  * Organisation: Codemerger Ldt.
@@ -25,19 +30,20 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @DataJpaTest
 class QueryAnnotationRepositoryTest {
 
+    public static final int ZIP_FROM = 999;
+    public static final int ZIP_TO = 1001;
     private static final int TARGET_ZIP = 1000;
-
     @Autowired
     private QueryAnnotationRepository queryAnnotationRepository;
 
     @BeforeEach
     void setUp() {
         for (int i = 0; i < 5; i++) {
-            insertRandomPerson();
+            InsertTestData.insertRandomPerson(queryAnnotationRepository);
         }
 
-        insertTargetPerson();
-        insertTargetPerson();
+        insertTargetPerson(queryAnnotationRepository, 1000);
+        insertTargetPerson(queryAnnotationRepository, 1000);
     }
 
     @Test
@@ -46,33 +52,39 @@ class QueryAnnotationRepositoryTest {
         final int numberOfPersonsInTargetZipCode = 2;
 
         // exec
-        final List<Person> personsInTargetZipCode = queryAnnotationRepository.findPersonsInZipCodeRange(999, 1001);
+        final List<Person> personsInTargetZipCode = queryAnnotationRepository.findPersonsInZipCodeRangeWithNativeQuery(ZIP_FROM, ZIP_TO);
 
         // verify
         assertThat(personsInTargetZipCode.size()).isEqualTo(numberOfPersonsInTargetZipCode);
     }
 
+    @Test
+    void findPersonsInZipCodeRangeWithJPQ() {
+        // assumption
+        final int numberOfPersonsInTargetZipCode = 2;
 
-    private void insertTargetPerson() {
-        final String firstName = getRandomName();
-        final String lastName = getRandomName();
-
-        final Person person = new Person(firstName, lastName, TARGET_ZIP);
-
-        queryAnnotationRepository.save(person);
+        // exec
+        final List<Person> personsInTargetZipCode = queryAnnotationRepository.findPersonsInZipCodeRangeWithJPQ(ZIP_FROM, ZIP_TO, Sort.by("firstName"));
+        // verify
+        assertThat(personsInTargetZipCode.size()).isEqualTo(numberOfPersonsInTargetZipCode);
     }
 
-    private void insertRandomPerson() {
-        final int zipCode = 5000;
-        final String firstName = getRandomName();
-        final String lastName = getRandomName();
+    @Test
+    void findAllUsersWithPagination() {
+        // assumption
+        final int pageSize = 5;
+        final int numberOfPersonsInTargetZipCode = 2;
 
-        final Person person = new Person(firstName, lastName, zipCode);
+        //setup
+        final Pageable pageable = PageRequest.of(0, pageSize, Sort.by(
+                Sort.Order.asc("firstName"),
+                Sort.Order.desc("id")));
 
-        queryAnnotationRepository.save(person);
-    }
+        // exec
+        final Page<Person> personsInTargetZipCode = queryAnnotationRepository.findPersonsInZipRangeWithPagination(ZIP_FROM, ZIP_TO, pageable);
+        // verify
 
-    private String getRandomName() {
-        return randomAlphabetic(10);
+        assertThat(personsInTargetZipCode.getTotalPages()).isEqualTo(1);
+        assertThat(personsInTargetZipCode.getTotalElements()).isEqualTo(numberOfPersonsInTargetZipCode);
     }
 }

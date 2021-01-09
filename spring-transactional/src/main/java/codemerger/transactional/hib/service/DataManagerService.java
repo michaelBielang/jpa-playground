@@ -42,7 +42,7 @@ public class DataManagerService {
 
         final Person person = getNewPerson();
 
-        save(person);
+        saveForTransactionalDemo(person);
 
         throw new NoSuchElementException("Random Exception");
     }
@@ -56,7 +56,7 @@ public class DataManagerService {
 
         final Person person = getNewPerson();
 
-        save(person);
+        saveForTransactionalDemo(person);
 
         try {
             childPersonManagerService.insertChildPerson(getNewPerson());
@@ -71,7 +71,7 @@ public class DataManagerService {
 
         final Person person = getNewPerson();
 
-        save(person);
+        saveForTransactionalDemo(person);
 
         throw new NoSuchElementException("Random Exception");
     }
@@ -84,8 +84,7 @@ public class DataManagerService {
         return new Person(randomAlphabetic(5), randomAlphabetic(5));
     }
 
-    @Transactional
-    public void save(Person person) {
+    public void saveForTransactionalDemo(Person person) {
         personRepository.save(person);
     }
 

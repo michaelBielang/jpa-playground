@@ -3,9 +3,7 @@ package codemerger.queries.demo.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Organisation: Codemerger Ldt.
@@ -19,7 +17,7 @@ import javax.persistence.Id;
 
 @Data
 @NoArgsConstructor
-@Entity
+@Entity(name = "PERSON")
 public class Person {
 
     @Id
@@ -28,6 +26,10 @@ public class Person {
     private String firstName;
     private String lastName;
     private int postCode;
+
+    // we assume that by deleting an department we also get rid of all employees
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Department department;
 
     public Person(String firstName, String lastName, int postCode) {
         this.firstName = firstName;

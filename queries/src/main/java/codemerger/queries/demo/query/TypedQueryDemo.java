@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -25,7 +26,13 @@ public class TypedQueryDemo {
     private EntityManager entityManager;
 
     @Transactional
-    public List<Person> getPersons(final int zipFrom, final int zipTo) {
-        return null;
+    public List<Person> findPersonsInZipRange(final int zipFrom, final int zipTo) {
+        final TypedQuery<Person> typedQuery =
+                entityManager.createQuery("SELECT p FROM PERSON p WHERE p.postCode BETWEEN :zipFrom AND :zipTo", Person.class);
+
+        typedQuery.setParameter("zipFrom", zipFrom);
+        typedQuery.setParameter("zipTo", zipTo);
+
+        return typedQuery.getResultList();
     }
 }

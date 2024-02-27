@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Package: codemerger.jpa.test.entities
  * Date: 19.12.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

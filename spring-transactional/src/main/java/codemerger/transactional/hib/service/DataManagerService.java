@@ -18,7 +18,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
  * Package: codemerger.transactions.service
  * Date: 08.11.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

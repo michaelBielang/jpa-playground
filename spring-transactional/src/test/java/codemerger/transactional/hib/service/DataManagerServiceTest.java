@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Package: codemerger.transactional.hib.service
  * Date: 21.12.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

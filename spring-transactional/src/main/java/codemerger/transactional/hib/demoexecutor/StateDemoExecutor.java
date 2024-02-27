@@ -17,7 +17,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
  * Package: codemerger.transactional.hib.event
  * Date: 17.12.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

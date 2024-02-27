@@ -18,7 +18,7 @@ import java.util.List;
  * Package: codemerger.queries.demo.queryannotation
  * Date: 06.01.2021
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

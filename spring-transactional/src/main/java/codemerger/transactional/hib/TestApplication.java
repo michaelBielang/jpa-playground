@@ -12,7 +12,7 @@ import org.springframework.context.annotation.FilterType;
  * Package: codemerger.transactional.hib
  * Date: 21.12.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

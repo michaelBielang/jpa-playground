@@ -12,7 +12,7 @@ import java.util.Set;
  * Package: codemerger.queries.demo.entities
  * Date: 08.01.2021
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 

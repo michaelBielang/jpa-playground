@@ -13,7 +13,7 @@ import java.util.List;
  * Package: codemerger.jpa.test.repository
  * Date: 19.12.2020
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 public interface PersonRepository extends CrudRepository<Person, String> {

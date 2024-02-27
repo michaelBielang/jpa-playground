@@ -19,7 +19,7 @@ import static util.InsertTestData.insertTargetPerson;
  * Package: codemerger.queries.demo.query
  * Date: 08.01.2021
  *
- * @author: Michael Bielang, b137ang@codemerger.com.
+
  * @version: java version "14" 2020-03-17
  */
 
